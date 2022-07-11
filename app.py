@@ -1,6 +1,7 @@
 from quiz import Question
 import random
 
+
 def welcome():
     print("\nWelcome to Blind Date with a Book!\n")
     print("Please begin by completing our quiz to determine your reading preferences. Alternatively you can select a book yourself.")
@@ -9,6 +10,16 @@ def welcome():
     print("3. Quit")
     option = input("Please select your option (1, 2 or 3): ")
     return option
+
+def historical_fiction():
+    print("Looks like you're in the mood for an Historical Fiction book!\nPlease see the book we have selected for you below:")
+
+def popular_fiction():
+    print("Looks like you're in the mood for a Popular Fiction book!\nPlease see the book we have selected for you below:")
+
+def thriller():
+    print("Looks like you're in the mood for a Thriller book!\nPlease see the book we have selected for you below:")
+
 
 book_questions = [
     "What kind of movie is your favourite?\n(a)  Romance - The Notebook is a favourite!\n(b) I honestly couldn't pick - I love a broad range of everything!\n(c) Suspenseful movies with creepy twists\n\n",
@@ -22,6 +33,7 @@ questions = [
     Question(book_questions[2])
 ]
 
+
 def run_quiz(questions):
     score = 0
     for question in questions:
@@ -32,20 +44,17 @@ def run_quiz(questions):
             score += 2
         elif answer == "c":
             score += 3
-    return score
 
-
-def genre_selection(score):
-    if score <= 4:
-        print("Looks like you're in the mood for an Historical Fiction book!\n Please see your book selection below:")
-    elif (score >= 5) and (score <= 7):
-        print("Looks like you're in the mood for an Historical Fiction book!\n Please see your book selection below:")
-    elif (score >= 8) and (score <= 9):
-        print("Looks like you're in the mood for an Historical Fiction book!\n Please see your book selection below:")
+    while score > 0:
+        if score <= 4:
+            historical_fiction()
+        elif (score >= 5) and (score <= 7):
+            popular_fiction()
+        elif (score >= 8) and (score <= 9):
+            thriller()
 
 
 user_choice = ""
-
 while user_choice != 3:
     user_choice = welcome()
 
@@ -55,3 +64,5 @@ while user_choice != 3:
         pass
     elif user_choice == "3":
         break
+
+
