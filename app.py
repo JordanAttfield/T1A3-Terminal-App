@@ -1,5 +1,6 @@
 from quiz import Question
 import random
+from seed import book_catalogue
 
 
 def welcome():
@@ -13,6 +14,7 @@ def welcome():
 
 def historical_fiction():
     print("Looks like you're in the mood for an Historical Fiction book!\nPlease see the book we have selected for you below:")
+    random.choice(list(book_catalogue))
 
 def popular_fiction():
     print("Looks like you're in the mood for a Popular Fiction book!\nPlease see the book we have selected for you below:")
@@ -52,6 +54,7 @@ def run_quiz(questions):
             popular_fiction()
         elif (score >= 8) and (score <= 9):
             thriller()
+            break
 
 
 user_choice = ""
