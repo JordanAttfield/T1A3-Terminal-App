@@ -1,27 +1,29 @@
-from quiz import Question
+from questions import Question
 import random
-from seed import book_catalogue
-
+import seed
+from os import system
 
 def welcome():
     print("\nWelcome to Blind Date with a Book!\n")
-    print("Please begin by completing our quiz to determine your reading preferences. Alternatively you can select a book yourself.")
+    print(
+        "Please begin by completing our quiz to determine your reading preferences. Alternatively you can select a book yourself.")
     print("1. Take Quiz")
     print("2. I'd like to choose a book myself")
     print("3. Quit")
     option = input("Please select your option (1, 2 or 3): ")
     return option
 
-def historical_fiction():
-    print("Looks like you're in the mood for an Historical Fiction book!\nPlease see the book we have selected for you below:")
-    random.choice(list(book_catalogue))
-
 def popular_fiction():
-    print("Looks like you're in the mood for a Popular Fiction book!\nPlease see the book we have selected for you below:")
+    print("Looks like you're in the mood for a Popular Fiction book!\n\nPlease see the book we have selected for you below:\n")
+    print(random.choice(seed.popular_fiction_books))
+
+def romance():
+    print("Looks like you're in the mood for a Romance book!\n\nPlease see the book we have selected for you below:\n")
+    print(random.choice(seed.romance_books))
 
 def thriller():
-    print("Looks like you're in the mood for a Thriller book!\nPlease see the book we have selected for you below:")
-
+    print("Looks like you're in the mood for a Thriller book!\n\nPlease see the book we have selected for you below:\n")
+    print(random.choice(seed.thriller_books))
 
 book_questions = [
     "What kind of movie is your favourite?\n(a)  Romance - The Notebook is a favourite!\n(b) I honestly couldn't pick - I love a broad range of everything!\n(c) Suspenseful movies with creepy twists\n\n",
@@ -29,12 +31,17 @@ book_questions = [
     "Who would you like to have dinner with?\n(a) Augustus Waters\n(b) Hermione Granger\n(c) Sherlock Holmes\n\n"
 ]
 
+popular_fiction_books = ["The Seven Husbands of Evelyn Hugo by Taylor Jenkins Reid", "Anxious People by Fredrik Backman",
+                         "The Four Winds by Kristin Hannah", "Where The Crawdads Sing by Delia Owens"]
+
 questions = [
     Question(book_questions[0]),
     Question(book_questions[1]),
     Question(book_questions[2])
 ]
 
+def add_book():
+    pass
 
 def run_quiz(questions):
     score = 0
@@ -46,26 +53,34 @@ def run_quiz(questions):
             score += 2
         elif answer == "c":
             score += 3
+    determine_genre(score)
+    return score
 
-    while score > 0:
-        if score <= 4:
-            historical_fiction()
-        elif (score >= 5) and (score <= 7):
-            popular_fiction()
-        elif (score >= 8) and (score <= 9):
-            thriller()
-            break
 
+
+def determine_genre(score):
+    if score <= 4:
+        romance()
+    elif (score >= 5) and (score <= 7):
+        popular_fiction()
+    elif (score >= 8) and (score <= 9):
+        thriller()
 
 user_choice = ""
-while user_choice != 3:
-    user_choice = welcome()
 
+while user_choice != 3:
+    system('clear')
+    user_choice = welcome()
     if user_choice == "1":
         run_quiz(questions)
     elif user_choice == "2":
-        pass
+        add_book()
     elif user_choice == "3":
-        break
+        continue
+    else:
+        print("Invalid option. Please try again.")
 
+    input("\nPress enter to return to the main menu")
+    system('clear')
 
+print("See you next time!")

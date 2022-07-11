@@ -1,8 +1,8 @@
-book_catalogue = {
-    "Popular Fiction": ["The Seven Husbands of Evelyn Hugo by Taylor Jenkins Reid", "Anxious People by Fredrik Backman", "The Four Winds by Kristin Hannah", "Where The Crawdads Sing by Delia Owens"],
-    "Thriller": ["The Lies I Tell by Julie Clark", "Things We Do In The Dark by Jennifer Hillier", "The House Across The Lake by Riley Sager", "The Family Upstairs by Lisa Jewell"],
-    "Romance": ["People We Meet on Vacation by Emily Henry", "The Unhoneymooners by Christina Lauren", "Every Summer After by Carley Fortune", "One Italian Summer by Rebecca Serle"]
-}
+popular_fiction_books = ["The Seven Husbands of Evelyn Hugo by Taylor Jenkins Reid", "Anxious People by Fredrik Backman", "The Four Winds by Kristin Hannah", "Where The Crawdads Sing by Delia Owens"]
+thriller_books = ["The Lies I Tell by Julie Clark", "Things We Do In The Dark by Jennifer Hillier", "The House Across The Lake by Riley Sager", "The Family Upstairs by Lisa Jewell"]
+romance_books = ["People We Meet on Vacation by Emily Henry", "The Unhoneymooners by Christina Lauren", "Every Summer After by Carley Fortune", "One Italian Summer by Rebecca Serle"]
+
+
 
 book_questions = [
     "What kind of movie is your favourite?\n(a)  Romance - The Notebook is a favourite!\n(b) I honestly couldn't pick - I love a broad range of everything!\n(c) Suspenseful movies with creepy twists\n\n",
