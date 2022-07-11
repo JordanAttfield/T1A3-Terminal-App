@@ -1,49 +1,57 @@
+from quiz import Question
+import random
+
 def welcome():
-    print("\nWelcome to Book Box!\n")
-    print("Please Login or Register")
-    print("1. Login")
-    print("2. Register")
+    print("\nWelcome to Blind Date with a Book!\n")
+    print("Please begin by completing our quiz to determine your reading preferences. Alternatively you can select a book yourself.")
+    print("1. Take Quiz")
+    print("2. I'd like to choose a book myself")
     print("3. Quit")
     option = input("Please select your option (1, 2 or 3): ")
     return option
 
+book_questions = [
+    "What kind of movie is your favourite?\n(a)  Romance - The Notebook is a favourite!\n(b) I honestly couldn't pick - I love a broad range of everything!\n(c) Suspenseful movies with creepy twists\n\n",
+    "What's your ideal setting?\n(a) Somewhere warm and cozy where I can curl up with a book\n(b) Somewhere that's just asking to be explored!\n(c) Somewhere creepy and secluded\n\n",
+    "Who would you like to have dinner with?\n(a) Augustus Waters\n(b) Hermione Granger\n(c) Sherlock Holmes\n\n"
+]
 
-def book_selection():
-    print("Please select which genre books you'd like to receive in your next Book Box!")
+questions = [
+    Question(book_questions[0]),
+    Question(book_questions[1]),
+    Question(book_questions[2])
+]
+
+def run_quiz(questions):
+    score = 0
+    for question in questions:
+        answer = input(question.prompt)
+        if answer == "a":
+            score += 1
+        elif answer == "b":
+            score += 2
+        elif answer == "c":
+            score += 3
+    return score
 
 
-book_catalogue = {
-    "Popular Fiction": ["The Seven Husbands of Evelyn Hugo by Taylor Jenkins Reid", "Anxious People by Fredrik Backman", "The Four Winds by Kristin Hannah", "Where The Crawdads Sing by Delia Owens"]
-    "Thriller": ["The Lies I Tell by Julie Clark", "Things We Do In The Dark by Jennifer Hillier", "The House Across The Lake by Riley Sager", "The Family Upstairs by Lisa Jewell"]
-    "Romance": ["People We Meet on Vacation by Emily Henry", "The Unhoneymooners by Christina Lauren", "Every Summer After by Carley Fortune", "One Italian Summer by Rebecca Serle"]
-    "Fantasy": ["This Time Tomorrow by Emma Straub", "The Cruel Prince by Holly Black", "Circe by Madeline Miller", "House of Sky and Breath by Sarah J Maas"] 
-}
+def genre_selection(score):
+    if score <= 4:
+        print("Looks like you're in the mood for an Historical Fiction book!\n Please see your book selection below:")
+    elif (score >= 5) and (score <= 7):
+        print("Looks like you're in the mood for an Historical Fiction book!\n Please see your book selection below:")
+    elif (score >= 8) and (score <= 9):
+        print("Looks like you're in the mood for an Historical Fiction book!\n Please see your book selection below:")
 
-names = []
-usernames = []
-passwords = []
-
-def register():
-    names.append(input("Please enter your name: "))
-    usernames.append(input("Please choose a username: "))
-    passwords.append(input("Please choose a password: "))
-
-
-def login():
-    username = input("Please enter your username: ")
-    password = input("Please enter your Password: ")
-    if username in usernames and password in passwords:
-        print("welcome")
-    else:
-        print("incorrect!")
 
 user_choice = ""
 
 while user_choice != 3:
     user_choice = welcome()
+
     if user_choice == "1":
-        register()
+        run_quiz(questions)
     elif user_choice == "2":
-        login()
+        pass
     elif user_choice == "3":
         break
