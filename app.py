@@ -1,7 +1,8 @@
 from questions import Question
 import random
-import seed
+from seed import book_catalogue
 from os import system
+
 
 def welcome():
     print("\nWelcome to Blind Date with a Book!\n")
@@ -14,16 +15,20 @@ def welcome():
     return option
 
 def popular_fiction():
-    print("Looks like you're in the mood for a Popular Fiction book!\n\nPlease see the book we have selected for you below:\n")
-    print(random.choice(seed.popular_fiction_books))
+    print(
+        "Looks like you're in the mood for a Popular Fiction book!\n\nPlease see the book we have selected for you below:\n")
+    print(random.choice(book_catalogue["fiction"]))
+
 
 def romance():
     print("Looks like you're in the mood for a Romance book!\n\nPlease see the book we have selected for you below:\n")
-    print(random.choice(seed.romance_books))
+    print(random.choice(book_catalogue["romance"]))
+
 
 def thriller():
     print("Looks like you're in the mood for a Thriller book!\n\nPlease see the book we have selected for you below:\n")
-    print(random.choice(seed.thriller_books))
+    print(random.choice(book_catalogue["thrillers"]))
+
 
 book_questions = [
     "What kind of movie is your favourite?\n(a)  Romance - The Notebook is a favourite!\n(b) I honestly couldn't pick - I love a broad range of everything!\n(c) Suspenseful movies with creepy twists\n\n",
@@ -31,17 +36,25 @@ book_questions = [
     "Who would you like to have dinner with?\n(a) Augustus Waters\n(b) Hermione Granger\n(c) Sherlock Holmes\n\n"
 ]
 
-popular_fiction_books = ["The Seven Husbands of Evelyn Hugo by Taylor Jenkins Reid", "Anxious People by Fredrik Backman",
-                         "The Four Winds by Kristin Hannah", "Where The Crawdads Sing by Delia Owens"]
-
 questions = [
     Question(book_questions[0]),
     Question(book_questions[1]),
     Question(book_questions[2])
 ]
 
+
 def add_book():
-    pass
+    print("Here is our selection of books: \n")
+    for key, value in book_catalogue.items():
+        print(key, *value, sep='\n')
+
+
+def add_on_items():
+    answer = input("Would you like to add on any goodies to your book purchase?\nPrint 'Yes' or 'No'")
+    if answer == "yes":
+           
+        
+
 
 def run_quiz(questions):
     score = 0
@@ -57,7 +70,6 @@ def run_quiz(questions):
     return score
 
 
-
 def determine_genre(score):
     if score <= 4:
         romance()
@@ -66,11 +78,13 @@ def determine_genre(score):
     elif (score >= 8) and (score <= 9):
         thriller()
 
+
 user_choice = ""
 
 while user_choice != 3:
     system('clear')
     user_choice = welcome()
+    system('clear')
     if user_choice == "1":
         run_quiz(questions)
     elif user_choice == "2":
