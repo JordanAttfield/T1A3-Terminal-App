@@ -46,17 +46,19 @@ questions = [
     Question(book_questions[2])
 ]
 
-cart = ()
-cart_total = int()
+cart = []
+cart_total = 0
 
 def checkout(chosen_book, cart, cart_total):
-    checkout_ans = input("Would you like to purchase? The price of all our new releases is $18 per book. (Please enter 'yes' or 'no'\n")
+    checkout_ans = input("Would you like to purchase? The price of all our new releases is $18 per book. (Please enter 'yes' or 'no')\n Choose no to redo the quiz.")
     if checkout_ans == "yes":
         cart.append(chosen_book)
-        cart_total += 18
+        cart_total += 16
         print(cart)
         print(f"Cart Total: ${cart_total}")
-    
+        return cart, cart_total
+    else:
+        run_quiz(questions)
 
 def addon_item():
     answer = input("Would you like to add one of our goodies? (Type 'yes' or 'no'")
