@@ -114,11 +114,10 @@ while user_choice != 3:
     elif user_choice == "2":
         add_book()
     elif user_choice == "3":
-        continue
+        print("See you next time!")
     else:
         print("Invalid option. Please try again.")
 
     input("\nPress enter to return to the main menu")
     system('clear')
 
-print("See you next time!")
