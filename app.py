@@ -2,7 +2,8 @@ from questions import Question
 import random
 from seed import book_catalogue
 from os import system
-import addons
+from addons import Addons
+from functools import reduce
 
 # Welcome message and menu options
 def welcome():
@@ -11,8 +12,10 @@ def welcome():
         "Please begin by completing our quiz to determine your reading preferences. Alternatively you can select a book yourself.")
     print("1. Take Quiz")
     print("2. I'd like to choose a book myself")
-    print("3. Quit")
-    option = input("Please select your option (1, 2 or 3): ")
+    print("3. Extra goodies to go with your new books")
+    print("4. View Cart")
+    print("5. Quit")
+    option = input("Please select your option (1 - 5): ")
     return option
 
 # Questions for quiz 
@@ -21,6 +24,13 @@ book_questions = [
     "What's your ideal setting?\n(a) Somewhere warm and cozy where I can curl up with a book\n(b) Somewhere that's just asking to be explored!\n(c) Somewhere creepy and secluded\n\n",
     "Who would you like to have dinner with?\n(a) Augustus Waters\n(b) Hermione Granger\n(c) Sherlock Holmes\n\n"
 ]
+
+add_on1 = Addons("Penfolds Shiraz", "Enjoy a glass of red wine while you dive into your book. An initial aroma of warm spice and dark red fruits, pronounced with tastes of mulberry and blackberry supported by subtle oak", 30.0)
+add_on2 = Addons("Haighs Chocolates Small Hamper Box", "Indulge in a selection of Haighs most popular chocolates", 15.0)
+add_on3 = Addons("Book Lovers Candle", "Enjoy the aromas of dusty tomes and leather bound books while you read", 10)
+add_on4 = Addons("Byron Bay Gourmet Drinking Hot Chocolate", "Sip a mug of rich, velvety hot chocolate", 8)
+
+add_on_selection = [add_on1, add_on2, add_on3, add_on4]
 
 # Selects book genre based on quiz results. Prints message and randomly selects book from dictionary. Gives option to checkout.
 def popular_fiction():
@@ -75,17 +85,21 @@ def checkout(chosen_book, cart, cart_total):
 def addon_item():
     answer = input("Would you like to add one of our goodies? (Type 'yes' or 'no'")
     if answer == "yes":
-        print(addons.add_on_selection)
-   
+        print(add_on1)
+        print(add_on2)
+        print(add_on3)
+        print(add_on4)
+
 # Option from main menu that lists entire book catalogue and gives option to add books to cart
 def add_book():
     print("Here is our selection of books: \n")
-    for key, value in book_catalogue.items():
-        print(key, *value, sep='\n')
-    chosen_book = input("\nPlease type the name of the book you'd like to purchase: ")
-    while chosen_book in book_catalogue:
-        checkout(chosen_book, cart, cart_total)
-    print("That book isn't in our catalogue. Try again. Perhaps there was a typo?")
+    flatlist = reduce(lambda a,b:a+b, book_catalogue.values())
+    print(flatlist)
+    chosen_book = None
+    while chosen_book not in flatlist:
+        chosen_book = input("\nPlease type the name of the book you'd like to purchase: ")
+        print("That book isn't in our selection. Please try again.")
+    checkout(chosen_book, cart, cart_total)
     
 # Determining quiz score which is used to determine genre preference and book selection
 def run_quiz(questions):
@@ -109,6 +123,9 @@ def determine_genre(score):
     elif (score >= 8) and (score <= 9):
         thriller()
 
+def view_cart():
+    pass
+
 user_choice = ""
 
 while user_choice != 3:
@@ -117,8 +134,12 @@ while user_choice != 3:
     if user_choice == "1":
         run_quiz(questions)
     elif user_choice == "2":
-        add_book()
+        add_book()   
     elif user_choice == "3":
+        addon_item()
+    elif user_choice == "4":
+        view_cart()
+    elif user_choice == "5":
         print("See you next time!")
     else:
         print("Invalid option. Please try again.")
