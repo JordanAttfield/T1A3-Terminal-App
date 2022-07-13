@@ -8,7 +8,7 @@ from colorama import Fore
 
 # Welcome message and menu options
 def welcome():
-    print(Fore.LIGHTMAGENTA_EX + "\nWelcome to Blind Date with a Book!\n")
+    print(Fore.LIGHTBLUE_EX + "\nWelcome to Blind Date with a Book!\n")
     print(
         "Please begin by completing our quiz to determine your reading preferences. Alternatively you can select a book yourself.")
     print("1. Take Quiz")
@@ -37,7 +37,7 @@ add_on_selection = [add_on1, add_on2, add_on3, add_on4]
 def popular_fiction():
     print(
         "Looks like you're in the mood for a Popular Fiction book!\n\nPlease see the book we have selected for you below:\n")
-    chosen_book = random.choice(book_catalogue["fiction"])
+    chosen_book = random.choice(book_catalogue["fiction"]) #------------------------------------------------------------------------------- Variable help?
     print(chosen_book)
     print("\nWould you like to purchase? All new releases are $18")
     checkout(chosen_book, cart, cart_total)
@@ -69,7 +69,7 @@ questions = [
 ]
 
 # Checkout option once book selections have been generated. Gives option to add to cart.
-cart = []
+cart = []#---------------------------------------------------------------------------------variable help?
 cart_total = 0
 
 def checkout(chosen_book, cart, cart_total):
@@ -85,10 +85,11 @@ def checkout(chosen_book, cart, cart_total):
     return cart, cart_total, chosen_book
     
 
-# Add ons function to add additional products to cart
+# Add ons function to add additional products to cart - --------------------------------------------------------GLOBAL/LOCAL FUNCTIONS HELP??
 def addon_item():
     for item in add_on_selection:
         print(item)
+    checkout(chosen_book, cart, cart_total) #-------------------------------------------------------------------------
 
 # Option from main menu that lists entire book catalogue and gives option to add books to cart
 def add_book():
@@ -108,7 +109,6 @@ def add_book():
             print("We don't have that book in our selection. Please try again.")
     
        
-
 # Determining quiz score which is used to determine genre preference and book selection
 def run_quiz(questions):
     score = 0
@@ -144,7 +144,7 @@ while user_choice != 3:
     elif user_choice == "2":
         add_book()   
     elif user_choice == "3":
-        addon_item()
+        addon_item() #----------------------------------------------------------------------- Argument help
     elif user_choice == "4":
         view_cart(cart, cart_total)
     elif user_choice == "5":
