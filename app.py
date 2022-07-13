@@ -25,7 +25,7 @@ book_questions = [
     "Who would you like to have dinner with?\n(a) Augustus Waters\n(b) Hermione Granger\n(c) Sherlock Holmes\n\n"
 ]
 
-add_on1 = Addons("Penfolds Shiraz", "Enjoy a glass of red wine while you dive into your book. An initial aroma of warm spice and dark red fruits, pronounced with tastes of mulberry and blackberry supported by subtle oak", 30.0)
+add_on1 = Addons("Penfolds Shiraz", "Enjoy a glass of red wine while you dive into your book", 30.0)
 add_on2 = Addons("Haighs Chocolates Small Hamper Box", "Indulge in a selection of Haighs most popular chocolates", 15.0)
 add_on3 = Addons("Book Lovers Candle", "Enjoy the aromas of dusty tomes and leather bound books while you read", 10)
 add_on4 = Addons("Byron Bay Gourmet Drinking Hot Chocolate", "Sip a mug of rich, velvety hot chocolate", 8)
@@ -38,6 +38,7 @@ def popular_fiction():
         "Looks like you're in the mood for a Popular Fiction book!\n\nPlease see the book we have selected for you below:\n")
     chosen_book = random.choice(book_catalogue["fiction"])
     print(chosen_book)
+    print("\nWould you like to purchase? All new releases are $18")
     checkout(chosen_book, cart, cart_total)
     return chosen_book
 
@@ -46,6 +47,7 @@ def romance():
     print("Looks like you're in the mood for a Romance book!\n\nPlease see the book we have selected for you below:\n")
     chosen_book = random.choice(book_catalogue["romance"])
     print(chosen_book)
+    print("\nWould you like to purchase? All new releases are $18")
     checkout(chosen_book, cart, cart_total)
     return chosen_book
 
@@ -54,6 +56,7 @@ def thriller():
     print("Looks like you're in the mood for a Thriller book!\n\nPlease see the book we have selected for you below:\n")
     chosen_book = random.choice(book_catalogue["thrillers"])
     print(chosen_book)
+    print("\nWould you like to purchase? All new releases are $18")
     checkout(chosen_book, cart, cart_total)
     return chosen_book
 
@@ -69,7 +72,7 @@ cart = []
 cart_total = 0
 
 def checkout(chosen_book, cart, cart_total):
-    checkout_ans = input("\nPlease confirm your purchase by typing 'yes' or 'no'. The price of all our new releases is $18 per book.\n Choose no to redo the quiz.")
+    checkout_ans = input("\nPlease confirm your purchase by typing 'yes' or 'no'\n")
     if checkout_ans == "yes":
         cart.append(chosen_book)
         cart_total += 18
@@ -83,8 +86,6 @@ def checkout(chosen_book, cart, cart_total):
 
 # Add ons function to add additional products to cart
 def addon_item():
-    answer = input("Would you like to add one of our goodies? (Type 'yes' or 'no'")
-    if answer == "yes":
         print(add_on1)
         print(add_on2)
         print(add_on3)
@@ -94,7 +95,7 @@ def addon_item():
 def add_book():
     print("Here is our selection of books: \n")
     flatlist = reduce(lambda a,b:a+b, book_catalogue.values())
-    print(flatlist)
+    print(*flatlist, sep="\n")
     chosen_book = None
     while chosen_book not in flatlist:
         chosen_book = input("\nPlease type the name of the book you'd like to purchase: ")
