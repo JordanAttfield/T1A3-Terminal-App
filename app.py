@@ -60,13 +60,16 @@ cart_total = 0
 
 def checkout(chosen_book, cart, cart_total):
     checkout_ans = input("\nPlease confirm your purchase by typing 'yes' or 'no'. The price of all our new releases is $18 per book.\n Choose no to redo the quiz.")
-    while checkout_ans == "yes":
+    if checkout_ans == "yes":
         cart.append(chosen_book)
         cart_total += 18
         print(f"\nHere is your shopping cart:\n{cart}")
         print(f"Cart Total: ${cart_total}")
-        return cart, cart_total
-    run_quiz(questions)
+    elif checkout_ans == "no":
+        print("Let's try the quiz again!\n")
+        run_quiz(questions)
+    return cart, cart_total
+    
 
 # Add ons function to add additional products to cart
 def addon_item():
@@ -80,7 +83,9 @@ def add_book():
     for key, value in book_catalogue.items():
         print(key, *value, sep='\n')
     chosen_book = input("\nPlease type the name of the book you'd like to purchase: ")
-    checkout(chosen_book, cart, cart_total)
+    while chosen_book in book_catalogue:
+        checkout(chosen_book, cart, cart_total)
+    print("That book isn't in our catalogue. Try again. Perhaps there was a typo?")
     
 # Determining quiz score which is used to determine genre preference and book selection
 def run_quiz(questions):
