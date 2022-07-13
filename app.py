@@ -4,10 +4,11 @@ from seed import book_catalogue
 from os import system
 from addons import Addons
 from functools import reduce
+from colorama import Fore
 
 # Welcome message and menu options
 def welcome():
-    print("\nWelcome to Blind Date with a Book!\n")
+    print(Fore.LIGHTMAGENTA_EX + "\nWelcome to Blind Date with a Book!\n")
     print(
         "Please begin by completing our quiz to determine your reading preferences. Alternatively you can select a book yourself.")
     print("1. Take Quiz")
@@ -105,6 +106,7 @@ def add_book():
             break
         else:
             print("We don't have that book in our selection. Please try again.")
+    
        
 
 # Determining quiz score which is used to determine genre preference and book selection
