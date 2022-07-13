@@ -81,27 +81,32 @@ def checkout(chosen_book, cart, cart_total):
     elif checkout_ans == "no":
         print("Let's try the quiz again!\n")
         run_quiz(questions)
-    return cart, cart_total
+    return cart, cart_total, chosen_book
     
 
 # Add ons function to add additional products to cart
 def addon_item():
-        print(add_on1)
-        print(add_on2)
-        print(add_on3)
-        print(add_on4)
+    for item in add_on_selection:
+        print(item)
 
 # Option from main menu that lists entire book catalogue and gives option to add books to cart
 def add_book():
     print("Here is our selection of books: \n")
     flatlist = reduce(lambda a,b:a+b, book_catalogue.values())
     print(*flatlist, sep="\n")
-    chosen_book = None
-    while chosen_book not in flatlist:
-        chosen_book = input("\nPlease type the name of the book you'd like to purchase: ")
-        print("That book isn't in our selection. Please try again.")
-    checkout(chosen_book, cart, cart_total)
-    
+    while True:
+        chosen_book = input("Please type the name of the book you'd like to purchase: ")
+        book_choice = False
+        for i in flatlist:
+            if chosen_book == i:
+                book_choice = True
+        if book_choice:
+            checkout(chosen_book, cart, cart_total)
+            break
+        else:
+            print("We don't have that book in our selection. Please try again.")
+       
+
 # Determining quiz score which is used to determine genre preference and book selection
 def run_quiz(questions):
     score = 0
@@ -124,8 +129,8 @@ def determine_genre(score):
     elif (score >= 8) and (score <= 9):
         thriller()
 
-def view_cart():
-    pass
+def view_cart(cart, cart_total):
+    print(*cart, cart_total, sep="\n")
 
 user_choice = ""
 
@@ -139,7 +144,7 @@ while user_choice != 3:
     elif user_choice == "3":
         addon_item()
     elif user_choice == "4":
-        view_cart()
+        view_cart(cart, cart_total)
     elif user_choice == "5":
         print("See you next time!")
     else:
