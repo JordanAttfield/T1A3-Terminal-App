@@ -93,7 +93,7 @@ def addon_item():
     print("Here's a selection of some of our goodies you can purchase:\n")
     for item in add_on_selection:
         print(item)
-    product = input("Please enter the product you'd like to purchase:")
+    product = input("\nPlease enter the product you'd like to purchase:")
     for item in add_on_selection:
         if product in add_on_selection:
             print("Added to cart!")
@@ -141,7 +141,7 @@ def determine_genre(score):
         popular_fiction()
     elif (score >= 8) and (score <= 9):
         thriller()
-    os.system('clear')
+    
 
 def view_cart(cart):
     print("Here is your shopping cart:\n")
@@ -154,7 +154,6 @@ while user_choice != 3:
     user_choice = welcome()
     if user_choice == "1":
         run_quiz(questions)
-        os.system('clear')
     elif user_choice == "2":
         add_book()   
     elif user_choice == "3":
@@ -165,7 +164,7 @@ while user_choice != 3:
         print("See you next time!")
     else:
         print("Invalid option. Please try again.")
-
+        
     input("\nPress enter to return to the main menu")
     
 
