@@ -1,8 +1,10 @@
 # T1A3 Terminal Application Assignment - Jordan Attfield
 
 ### Outline
-My application idea is an app called 'Date with a Book" that allows customers customers to take a quiz and based on their outcome of the quiz, a book will be selected for them to purchase. Users can add books to their shopping cart, manually select other books and also purchase add-ons.
+My application idea is an app called 'Date with a Book" that allows users to take a quiz and based on their outcome of the quiz, a book will be selected for them to purchase. Users can add books to their shopping cart, manually select other books and also purchase add-ons.
 
+Here is a flowchart depicting the features of the app:
+![Application Flowchart](./Screenshots/App%20Flowchart.drawio.png)
 ### Github Link
 https://github.com/JordanAttfield/T1A3-Terminal-App
 
@@ -18,13 +20,42 @@ I tried to incorporate multiple Python elements within this feature. The quiz us
 
 **Feature 2: Random Book Selector**
 
+Upon completion of the quiz, a score will be generated which will then determine the users genre preference. There are 3 genre options:
 
+Romance (if score is between 0-4)
+Popular Fiction (if score is between 5-7)
+Thriller (if score is between 8-9)
 
-**Feature 3: Birthday Month**
-When users first register for an account, the app will ask for their date of birth. Based on this, the app will track which month we are currently in, and add an additional book in their Book Box on their birthday month as a present.
+A function then uses the Random module to randomly select a book from the book catalogue. This catalogue is a dictionary which contains nested lists split into the 3 genres, with each genre belonging to a key.
 
-**Feature 4: Track Purchases**
-The app will track previous books the users have been sent, so users can track their reading and purchase history.
+**Feature 3: Manually Add Books**
+
+The user can manually add on books by selecting this option from the menu. All books from the dictionary are then displayed. If the user wishes to purchase a book, they can enter their book, and the input is checked against the dictionary, and if it matches the book is added to their cart.
+
+**Feature 4: Checkout Cart**
+
+Once a book has been randomly selected for the user, the user can confirm if they wish to purchase and if so, the book is added to the checkout cart. Users can then manually add other books or add-ons to their cart and may check their cart at any time.
+
+**Feature 5: Add ons**
+
+I used OOP to create an Addons class which has a variety of additional non-book items the user can add to their cart. Each Addon object consists of the product name, description and price. These items are displayed to the user, and then asks the user to input the product they wish to purchase. This input is then checked against the list of objects and added to cart.
+
+### Screenshots
+![Main Menu](./screenshots/Front%20Page.png)
+![Quiz Feature](./screenshots/Quiz.png)
+![Add Books Feature](./screenshots/Add%20book%20manually.png)
+![Addons Feature](./screenshots/Addons.png)
+![Shopping Cart Feature](./screenshots/Shopping%20Cart.png)
+
+### Implementation Plan
+
+I used a Trello board to plan the implementation of my application. I started by creating a 'Feature' label and created separate cards for each feature. This helped me to prioritise the features and break the tasks down into smaller segments. In addition to the main feature cards, I also have a label for research - I knew I needed to do more research on Bash scripting, error testing and Python modules to progress in the assignment, so I added these as tasks too.
+![Trello Board Overview](./Screenshots/Trello%20overview.png)
+![Quiz Feature Trello Card](./Screenshots/Quiz%20Trello.png)
+![Add ons Feature Trello Card](./Screenshots/Manual%20Add%20Trello.png)
+![Add Book Feature Trello Card](./Screenshots/Addbook%20Trello.png)
+![Cart Feature Trello Card](./Screenshots/Quiz%20Trello.png)
+
 
 ### References
 

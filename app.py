@@ -28,10 +28,10 @@ book_questions = [Fore.LIGHTBLUE_EX +
     "Who would you like to have dinner with?\n(a) Augustus Waters\n(b) Hermione Granger\n(c) Sherlock Holmes\n\n"
 ]
 
-add_on1 = Addons("Penfolds Shiraz","\nEnjoy a glass of red wine while you dive into your book", 30.0)
-add_on2 = Addons("Haighs Chocolates Small Hamper Box", "\nIndulge in a selection of Haighs most popular chocolates", 15.0)
+add_on1 = Addons("Red Wine","\nEnjoy a glass of red wine while you dive into your book", 30.0)
+add_on2 = Addons("Box of Chocolates", "\nIndulge in a selection of Haighs most popular chocolates", 15.0)
 add_on3 = Addons("Book Lovers Candle", "\nEnjoy the aromas of dusty tomes and leather bound books while you read", 10)
-add_on4 = Addons("Byron Bay Gourmet Drinking Hot Chocolate", "\nSip a mug of rich, velvety hot chocolate", 8)
+add_on4 = Addons("Hot Chocolate Mix", "\nSip a mug of rich, velvety hot chocolate", 8)
 
 add_on_selection = [add_on1, add_on2, add_on3, add_on4]
 
@@ -74,7 +74,7 @@ questions = [
 ]
 
 # Checkout option once book selections have been generated. Gives option to add to cart.
-cart = []#---------------------------------------------------------------------------------variable help?
+cart = []
 chosen_book = []
 
 def checkout(chosen_book, cart):
@@ -88,18 +88,19 @@ def checkout(chosen_book, cart):
     return cart, chosen_book
     
 
-# Add ons function to add additional products to cart - --------------------------------------------------------GLOBAL/LOCAL FUNCTIONS HELP??
-def addon_item():
+# Add ons function to add additional products to cart 
+def addon_item(cart):
     print("Here's a selection of some of our goodies you can purchase:\n")
     for item in add_on_selection:
         print(item)
     product = input("\nPlease enter the product you'd like to purchase:")
     for item in add_on_selection:
-        if product in add_on_selection:
-            print("Added to cart!")
-            cart.append(product)
-        else: 
-            print("no")
+        print(item)
+    if any(item.name == product for item in add_on_selection):
+        cart.append(product)
+        print("\nAdded to cart!")
+    else:
+        print("\nWe don't have that item in our selection. Please try again.")
    
 
 # Option from main menu that lists entire book catalogue and gives option to add books to cart
@@ -157,7 +158,7 @@ while user_choice != 3:
     elif user_choice == "2":
         add_book()   
     elif user_choice == "3":
-        addon_item() #----------------------------------------------------------------------- Argument help
+        addon_item(cart) 
     elif user_choice == "4":
         view_cart(cart)
     elif user_choice == "5":
