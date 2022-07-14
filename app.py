@@ -1,64 +1,69 @@
 from questions import Question
 import random
 from seed import book_catalogue
-from os import system
+import os
 from addons import Addons
 from functools import reduce
 from colorama import Fore
 
 # Welcome message and menu options
 def welcome():
-    print(Fore.LIGHTBLUE_EX + "\nWelcome to Blind Date with a Book!\n")
+    print(Fore.MAGENTA + "\nWelcome to Blind Date with a Book!\n")
     print(
-        "Please begin by completing our quiz to determine your reading preferences. Alternatively you can select a book yourself.")
+        "Please begin by completing our quiz to determine your reading preferences.\nAlternatively you can select a book yourself.\n")
     print("1. Take Quiz")
     print("2. I'd like to choose a book myself")
     print("3. Extra goodies to go with your new books")
     print("4. View Cart")
     print("5. Quit")
     option = input("Please select your option (1 - 5): ")
+    os.system('clear')
     return option
+     
 
 # Questions for quiz 
-book_questions = [
+book_questions = [Fore.LIGHTBLUE_EX +
     "What kind of movie is your favourite?\n(a)  Romance - The Notebook is a favourite!\n(b) I honestly couldn't pick - I love a broad range of everything!\n(c) Suspenseful movies with creepy twists\n\n",
     "What's your ideal setting?\n(a) Somewhere warm and cozy where I can curl up with a book\n(b) Somewhere that's just asking to be explored!\n(c) Somewhere creepy and secluded\n\n",
     "Who would you like to have dinner with?\n(a) Augustus Waters\n(b) Hermione Granger\n(c) Sherlock Holmes\n\n"
 ]
 
-add_on1 = Addons("Penfolds Shiraz", "Enjoy a glass of red wine while you dive into your book", 30.0)
-add_on2 = Addons("Haighs Chocolates Small Hamper Box", "Indulge in a selection of Haighs most popular chocolates", 15.0)
-add_on3 = Addons("Book Lovers Candle", "Enjoy the aromas of dusty tomes and leather bound books while you read", 10)
-add_on4 = Addons("Byron Bay Gourmet Drinking Hot Chocolate", "Sip a mug of rich, velvety hot chocolate", 8)
+add_on1 = Addons("Penfolds Shiraz","\nEnjoy a glass of red wine while you dive into your book", 30.0)
+add_on2 = Addons("Haighs Chocolates Small Hamper Box", "\nIndulge in a selection of Haighs most popular chocolates", 15.0)
+add_on3 = Addons("Book Lovers Candle", "\nEnjoy the aromas of dusty tomes and leather bound books while you read", 10)
+add_on4 = Addons("Byron Bay Gourmet Drinking Hot Chocolate", "\nSip a mug of rich, velvety hot chocolate", 8)
 
 add_on_selection = [add_on1, add_on2, add_on3, add_on4]
 
 # Selects book genre based on quiz results. Prints message and randomly selects book from dictionary. Gives option to checkout.
 def popular_fiction():
+    os.system('clear')
     print(
-        "Looks like you're in the mood for a Popular Fiction book!\n\nPlease see the book we have selected for you below:\n")
-    chosen_book = random.choice(book_catalogue["fiction"]) #------------------------------------------------------------------------------- Variable help?
+        "Looks like you're in the mood for a Popular Fiction book!\nPlease see the book we have selected for you below:\n")
+    chosen_book = random.choice(book_catalogue["fiction"]) 
     print(chosen_book)
     print("\nWould you like to purchase? All new releases are $18")
-    checkout(chosen_book, cart, cart_total)
+    checkout(chosen_book, cart)
     return chosen_book
 
 
 def romance():
-    print("Looks like you're in the mood for a Romance book!\n\nPlease see the book we have selected for you below:\n")
+    os.system('clear')
+    print("Looks like you're in the mood for a Romance book!\nPlease see the book we have selected for you below:\n")
     chosen_book = random.choice(book_catalogue["romance"])
     print(chosen_book)
     print("\nWould you like to purchase? All new releases are $18")
-    checkout(chosen_book, cart, cart_total)
+    checkout(chosen_book, cart)
     return chosen_book
 
 
 def thriller():
-    print("Looks like you're in the mood for a Thriller book!\n\nPlease see the book we have selected for you below:\n")
+    os.system('clear')
+    print("Looks like you're in the mood for a Thriller book!\nPlease see the book we have selected for you below:\n")
     chosen_book = random.choice(book_catalogue["thrillers"])
     print(chosen_book)
     print("\nWould you like to purchase? All new releases are $18")
-    checkout(chosen_book, cart, cart_total)
+    checkout(chosen_book, cart)
     return chosen_book
 
 # Questions for quiz
@@ -70,26 +75,32 @@ questions = [
 
 # Checkout option once book selections have been generated. Gives option to add to cart.
 cart = []#---------------------------------------------------------------------------------variable help?
-cart_total = 0
+chosen_book = []
 
-def checkout(chosen_book, cart, cart_total):
+def checkout(chosen_book, cart):
     checkout_ans = input("\nPlease confirm your purchase by typing 'yes' or 'no'\n")
     if checkout_ans == "yes":
         cart.append(chosen_book)
-        cart_total += 18
         print(f"\nHere is your shopping cart:\n{cart}")
-        print(f"Cart Total: ${cart_total}")
     elif checkout_ans == "no":
         print("Let's try the quiz again!\n")
         run_quiz(questions)
-    return cart, cart_total, chosen_book
+    return cart, chosen_book
     
 
 # Add ons function to add additional products to cart - --------------------------------------------------------GLOBAL/LOCAL FUNCTIONS HELP??
 def addon_item():
+    print("Here's a selection of some of our goodies you can purchase:\n")
     for item in add_on_selection:
         print(item)
-    checkout(chosen_book, cart, cart_total) #-------------------------------------------------------------------------
+    product = input("Please enter the product you'd like to purchase:")
+    for item in add_on_selection:
+        if product in add_on_selection:
+            print("Added to cart!")
+            cart.append(product)
+        else: 
+            print("no")
+   
 
 # Option from main menu that lists entire book catalogue and gives option to add books to cart
 def add_book():
@@ -97,17 +108,17 @@ def add_book():
     flatlist = reduce(lambda a,b:a+b, book_catalogue.values())
     print(*flatlist, sep="\n")
     while True:
-        chosen_book = input("Please type the name of the book you'd like to purchase: ")
+        chosen_book = input("\nPlease type the name of the book you'd like to purchase: ")
         book_choice = False
         for i in flatlist:
             if chosen_book == i:
                 book_choice = True
         if book_choice:
-            checkout(chosen_book, cart, cart_total)
+            checkout(chosen_book, cart)
             break
         else:
             print("We don't have that book in our selection. Please try again.")
-    
+    return chosen_book
        
 # Determining quiz score which is used to determine genre preference and book selection
 def run_quiz(questions):
@@ -130,29 +141,32 @@ def determine_genre(score):
         popular_fiction()
     elif (score >= 8) and (score <= 9):
         thriller()
+    os.system('clear')
 
-def view_cart(cart, cart_total):
-    print(*cart, cart_total, sep="\n")
+def view_cart(cart):
+    print("Here is your shopping cart:\n")
+    print(*cart, sep="\n")
 
 user_choice = ""
 
 while user_choice != 3:
-    system('clear')
+    os.system('clear')
     user_choice = welcome()
     if user_choice == "1":
         run_quiz(questions)
+        os.system('clear')
     elif user_choice == "2":
         add_book()   
     elif user_choice == "3":
         addon_item() #----------------------------------------------------------------------- Argument help
     elif user_choice == "4":
-        view_cart(cart, cart_total)
+        view_cart(cart)
     elif user_choice == "5":
         print("See you next time!")
     else:
         print("Invalid option. Please try again.")
 
     input("\nPress enter to return to the main menu")
-    system('clear')
+    
 
 
