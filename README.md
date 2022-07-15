@@ -56,6 +56,21 @@ I used a Trello board to plan the implementation of my application. I started by
 ![Add Book Feature Trello Card](./Screenshots/Addbook%20Trello.png)
 ![Cart Feature Trello Card](./Screenshots/Quiz%20Trello.png)
 
+## Installation Instructions & Hardware/Software Requirements
+
+Please follow the below steps to run Date with A Book:
+
+- Open your command line and navigate to a directory you wish to run the program from.
+- Copy the following link into your command line
+    $ git clone https://github.com/JordanAttfield/T1A3-Terminal-App
+- Once the repository has finished cloning, please enter the following into your command line:
+    $ ./run_app.sh
+
+Please note the following modules are required to be installed to run the application:
+- colorama: to install this module, please type the following into your command line:
+    $ pip install colorama
+
+There are no system or hardware requirements for this application.
 
 ### References
 

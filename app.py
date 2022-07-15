@@ -22,7 +22,7 @@ def welcome():
     return option
      
 
-# Questions for quiz (test)
+# Questions for quiz 
 book_questions = [Fore.LIGHTBLUE_EX +
     "What kind of movie is your favourite?\n(a)  Romance - The Notebook is a favourite!\n(b) I honestly couldn't pick - I love a broad range of everything!\n(c) Suspenseful movies with creepy twists\n\n",
     "What's your ideal setting?\n(a) Somewhere warm and cozy where I can curl up with a book\n(b) Somewhere that's just asking to be explored!\n(c) Somewhere creepy and secluded\n\n",
@@ -86,8 +86,10 @@ def checkout(chosen_book, cart):
     elif checkout_ans == "no":
         print("Let's try the quiz again!\n")
         run_quiz(questions)
+    else: 
+        raise Exception("Input not recognised. Please type 'yes' or 'no'.")
     return cart, chosen_book
-    
+
 
 # Add ons function to add additional products to cart 
 def addon_item(cart):
@@ -99,7 +101,7 @@ def addon_item(cart):
         cart.append(product)
         print("\nAdded to cart!")
     else:
-        print("\nWe don't have that item in our selection. Please try again.")
+        raise Exception("Input not recognised. Please enter an item from the list.")
    
 
 # Option from main menu that lists entire book catalogue and gives option to add books to cart
