@@ -22,7 +22,7 @@ def welcome():
     return option
      
 
-# Questions for quiz 
+# Questions for quiz (test)
 book_questions = [Fore.LIGHTBLUE_EX +
     "What kind of movie is your favourite?\n(a)  Romance - The Notebook is a favourite!\n(b) I honestly couldn't pick - I love a broad range of everything!\n(c) Suspenseful movies with creepy twists\n\n",
     "What's your ideal setting?\n(a) Somewhere warm and cozy where I can curl up with a book\n(b) Somewhere that's just asking to be explored!\n(c) Somewhere creepy and secluded\n\n",
