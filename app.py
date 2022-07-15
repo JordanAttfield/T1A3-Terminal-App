@@ -1,3 +1,4 @@
+from ast import Continue
 from questions import Question
 import random
 from seed import book_catalogue
@@ -93,9 +94,7 @@ def addon_item(cart):
     print("Here's a selection of some of our goodies you can purchase:\n")
     for item in add_on_selection:
         print(item)
-    product = input("\nPlease enter the product you'd like to purchase:")
-    for item in add_on_selection:
-        print(item)
+    product = input("\nPlease enter the product you'd like to purchase: ")
     if any(item.name == product for item in add_on_selection):
         cart.append(product)
         print("\nAdded to cart!")
