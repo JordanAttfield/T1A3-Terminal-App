@@ -56,6 +56,13 @@ I used a Trello board to plan the implementation of my application. I started by
 ![Add Book Feature Trello Card](./Screenshots/Addbook%20Trello.png)
 ![Cart Feature Trello Card](./Screenshots/Quiz%20Trello.png)
 
+## Error Testing
+The following screenshots show the manual error tests that were performed.
+![Quiz Error Testing](./Screenshots/errortest-quiz.png)
+![Checkout feature Error Testing](./Screenshots/errortest-checkout.png)
+![Add-ons Feature Error Testing](./Screenshots/errortest-Addon.png)
+![Manual Book Selection Error Testing](./Screenshots/Errortest-manualbookadd.png)
+
 ## Installation Instructions & Hardware/Software Requirements
 
 Please follow the below steps to run Date with A Book:
@@ -65,12 +72,14 @@ Please follow the below steps to run Date with A Book:
     $ git clone https://github.com/JordanAttfield/T1A3-Terminal-App
 - Once the repository has finished cloning, please enter the following into your command line:
     $ ./run_app.sh
+- Once the application is successfully running, users may choose from the displayed menu options. Selecting Option 1 allows user to take a quiz to select a book. Users may also view the entire book catalogue by selecting menu option 2. Add ons can be chosen from menu option 3.
 
 Please note the following modules are required to be installed to run the application:
 - colorama: to install this module, please type the following into your command line:
     $ pip install colorama
 
 There are no system or hardware requirements for this application.
+
 
 ### References
 

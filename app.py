@@ -74,21 +74,23 @@ questions = [
     Question(book_questions[2])
 ]
 
-# Checkout option once book selections have been generated. Gives option to add to cart.
+# Checkout option once book selections have been generated. Gives option to add to cart. Error checks to ensure input == 'yes' or 'no'
 cart = []
 chosen_book = []
 
 def checkout(chosen_book, cart):
-    checkout_ans = input("\nPlease confirm your purchase by typing 'yes' or 'no'\n")
-    if checkout_ans == "yes":
-        cart.append(chosen_book)
-        print(f"\nHere is your shopping cart:\n{cart}")
-    elif checkout_ans == "no":
-        print("Let's try the quiz again!\n")
-        run_quiz(questions)
-    else: 
-        raise Exception("Input not recognised. Please type 'yes' or 'no'.")
-    return cart, chosen_book
+    while True:
+        checkout_ans = input("\nPlease confirm your purchase by typing 'yes' or 'no'\n")
+        if checkout_ans == "yes":
+            cart.append(chosen_book)
+            print(f"\nHere is your shopping cart:\n{cart}")
+            return cart, chosen_book
+        elif checkout_ans == "no":
+            print("\nYour selected book was not added.\nKeep looking for something else you might like from our selection!\n")
+            break
+        else: 
+            print("Input not recognised")
+        
 
 
 # Add ons function to add additional products to cart 
@@ -96,15 +98,17 @@ def addon_item(cart):
     print("Here's a selection of some of our goodies you can purchase:\n")
     for item in add_on_selection:
         print(item)
-    product = input("\nPlease enter the product you'd like to purchase: ")
-    if any(item.name == product for item in add_on_selection):
-        cart.append(product)
-        print("\nAdded to cart!")
-    else:
-        raise Exception("Input not recognised. Please enter an item from the list.")
+    while True:
+        product = input("\nPlease enter the name of the product you'd like to purchase: ")
+        if any(item.name == product for item in add_on_selection):
+            cart.append(product)
+            print("\nAdded to cart!")
+            break
+        else:
+            print("Sorry that item isn't in our selection. Please try again.")
    
 
-# Option from main menu that lists entire book catalogue and gives option to add books to cart
+# Option from main menu that lists entire book catalogue and gives option to add books to cart - includes error testing to check chosen book input is in list. 
 def add_book():
     print("Here is our selection of books: \n")
     flatlist = reduce(lambda a,b:a+b, book_catalogue.values())
@@ -115,11 +119,12 @@ def add_book():
         for i in flatlist:
             if chosen_book == i:
                 book_choice = True
-        if book_choice:
+        if book_choice == True:
             checkout(chosen_book, cart)
             break
         else:
             print("We don't have that book in our selection. Please try again.")
+            continue
     return chosen_book
        
 # Determining quiz score which is used to determine genre preference and book selection
